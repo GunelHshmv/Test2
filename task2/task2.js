@@ -1,34 +1,33 @@
-class Message {
-  constructor(author, time, text) {
-    this.author = author;
-    this.time = time;
-    this.text = text;
-  }
-  toString() {
-    console.log(`${this.time} ${this.author} ${this.text}`);
-  }
+class Message{
+    constructor(names,date,text){
+        this.names=names
+        this.date=date
+        this.text=text
+    }
+    toString(){
+        console.log(`${this.date},${this.names}${this.text}`)
+    }
+}
+class Messenger{
+    constructor(){
+        this.history=[]
+    }
+
+getTime(){
+    let now=new Date()
+    return `${now.getHours()}:${now.getUTCMinutes()}`
+}
+send(names,text){
+    this.history.push(new Message(names ,this.getTime(),text))
+}
+showhistory() {
+    this.history.forEach(element => {
+        element.toString()
+    });
 }
 
-class Messenger {
-  constructor(history) {
-    this.history = [];
-  }
 
-  gettime() {
-    let now = new Date();
-    return `${now.getHours()}:${now.getMinutes()}`;
-  }
-  send(author, text) {
-    this.history.push(new Message(author, this.gettime(), text));
-  }
-
-  show_history() {
-    this.history.forEach((item) => item.toString());
-  }
 }
-
-let messenger = new Messenger();
-messenger.send("Adil", "ilk mesaj");
-messenger.send("Məryəm", "İkinci mesaj");
-messenger.send("Aynur", "Hello millet");
-messenger.show_history();
+let messenger=new Messenger()
+messenger.send('ali:','ilk mesaj')
+messenger.showhistory()
